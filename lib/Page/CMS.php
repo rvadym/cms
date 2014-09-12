@@ -18,7 +18,19 @@ class Page_CMS extends \Page {
         $crud->setModel($m = $this->add('rvadym\cms\Model_CMS'));
     }
     function page_edit() {
+
+        $this->add('View')->setElement('a')->set('< Go Back')->setAttr('href',$this->app->url('..'));
+
+        $this->app->stickyGet('id');
         $this->add('View')->set("This is CMS edit page");
+
+        $m = $this->add('rvadym\cms\Model_CMS');
+        if (isset($_GET['id'])) {
+            $m->tryLoad($_GET['id']);
+        }
+
+        $f = $this->add('rvadym\cms\Form_CMS');
+        $f->setModel($m);
     }
 
 }

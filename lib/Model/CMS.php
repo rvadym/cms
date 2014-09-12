@@ -12,8 +12,8 @@ class Model_CMS extends \SQL_Model {
     function init() {
         parent::init();
         $this->add('rvadym\cms\Initiator');
-        $this->addField('name');
-        $this->addField('spot');
+        $this->addField('name')->required('required');
+        $this->addField('spot')->required('required');
         $this->addField('html')->type('text');
         $this->addField('is_enabled')->type('boolean');
     }
