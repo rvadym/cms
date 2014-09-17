@@ -10,6 +10,7 @@ class Form_CMS extends \Form {
 
     // form configuration
     public $html_field_name    = 'html';
+    public $add_submit_button  = true;
     public $submit_button_text = 'Save';
     public $success_message    = 'Saved!';
     public $go_to_grid   = true;
@@ -41,7 +42,9 @@ class Form_CMS extends \Form {
             }
         }
 
-        $this->addSubmit($this->submit_button_text);
+        if ($this->add_submit_button) {
+            $this->addSubmit($this->submit_button_text);
+        }
         $this->onSubmit(array($this,'checkSubmit'));
         return $model;
     }
