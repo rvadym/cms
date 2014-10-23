@@ -13,8 +13,9 @@ class Form_CMS extends \Form {
     public $add_submit_button  = true;
     public $submit_button_text = 'Save';
     public $success_message    = 'Saved!';
-    public $go_to_grid   = true;
-    public $to_grid_url  = '..';
+    public $go_to_grid    = true;
+    public $to_grid_url   = '..';
+    public $submit_check  = true;
 
     // tinymce configuration
     public $tinymce_theme      = 'advanced';
@@ -45,7 +46,7 @@ class Form_CMS extends \Form {
         if ($this->add_submit_button) {
             $this->addSubmit($this->submit_button_text);
         }
-        $this->onSubmit(array($this,'checkSubmit'));
+        if ($this->submit_check) $this->onSubmit(array($this,'checkSubmit'));
         return $model;
     }
     function checkSubmit() {
