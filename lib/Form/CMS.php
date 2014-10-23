@@ -28,7 +28,7 @@ class Form_CMS extends \Form {
         $this->add('rvadym\\tinymce\\Controller_TinyMCE');
     }
     function setModel($model, $actual_fields = UNDEFINED) {
-        $model = parent::setModel($model,$actual_fields);
+        $m = parent::setModel($model,$actual_fields);
 
         if ($e = $this->hasElement($this->html_field_name)) {
             if (is_a($e,'Form_Field')) {
@@ -42,12 +42,7 @@ class Form_CMS extends \Form {
                 );
             }
         }
-
-        if ($this->add_submit_button) {
-            $this->addSubmit($this->submit_button_text);
-        }
-        if ($this->submit_check) $this->onSubmit(array($this,'checkSubmit'));
-        return $model;
+        return $m;
     }
     function checkSubmit() {
         $this->save();

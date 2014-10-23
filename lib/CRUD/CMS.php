@@ -37,12 +37,22 @@ class CRUD_CMS extends \CRUD {
     }
 
     public function setModel($model, $fields = null, $grid_fields = null) {
-        $model = parent::setModel($model,$fields,$grid_fields);
+        $m = parent::setModel($model,$fields,$grid_fields);
         if ($this->allow_edit_original) {
             if ($this->grid) {
                 $this->grid->addColumn('button','edit');
             }
         }
-        return $model;
+
+        if ($this->form) {
+            if ($this->form->add_submit_button) {
+                $this->form->addSubmit($this->submit_button_text);
+            }
+            if ($this->form->submit_check) {
+                $this->form->onSubmit(array($this,'checkSubmit'));
+            }
+        }
+
+        return $m;
     }
 }
